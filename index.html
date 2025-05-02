@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">Portfolio</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Hi, I'm <span class="highlight">Ritvik Shrigaddi</span></h1>
+        <p class="typing-text">
+          I'm a Ritvik Shrigaddi <span class="typed-text"></span>
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I am a passionate developer with experience in creating web
+            applications. I love to learn new technologies and solve complex
+            problems.
+          </p>
+          <div class="skills">
+            <h3>Skills</h3>
+            <div class="skill-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Bootstrap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <!-- <img src="https://via.placeholder.com/300x200" alt="Project 1" /> -->
+          <h3>Spotify Clone</h3>
+          <p>I have created a clone of Spotify using HTML5, CSS3, and Bootstrap.</p>
+          <div class="project-links">
+            <a href="https://github.com/ritvik-shrigaddi/Spotify-Clone" class="btn">Live Demo</a>
+            <a href="https://github.com/ritvik-shrigaddi/Spotify-Clone" class="btn">GitHub</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <!-- <img src="https://via.placeholder.com/300x200" alt="Project 2" /> -->
+          <h3>Portfolio</h3>
+          <p>I have created a Portfolio using HTML5, CSS3, and Bootstrap.</p>
+          <div class="project-links">
+            <a href="#" class="btn">Live Demo</a>
+            <a href="#" class="btn">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <h2>Contact Me</h2>
+      <div class="contact-content">
+        <form id="contact-form">
+          <input type="text" placeholder="Name" required />
+          <input type="email" placeholder="Email" required />
+          <textarea placeholder="Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
