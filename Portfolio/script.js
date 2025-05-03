@@ -40,25 +40,22 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Mobile Navigation
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
-const navLinks = document.querySelectorAll('.nav-links li');
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+const links = document.querySelectorAll(".nav-links li");
 
-burger.addEventListener('click', () => {
+hamburger.addEventListener("click", () => {
     // Toggle Nav
-    nav.classList.toggle('nav-active');
-    
-    // Animate Links
-    navLinks.forEach((link, index) => {
-        if (link.style.animation) {
-            link.style.animation = '';
-        } else {
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-        }
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("active");
+});
+
+// Close mobile menu when clicking a link
+links.forEach(link => {
+    link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navLinks.classList.remove("active");
     });
-    
-    // Burger Animation
-    burger.classList.toggle('toggle');
 });
 
 // Smooth Scrolling
