@@ -9,9 +9,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    Navigation
     <nav class="navbar">
       <div class="logo">Ritvik Shrigaddi</div>
       <div class="hamburger">
@@ -35,25 +40,31 @@
       </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="hero-content">
         <h1>Hi, I'm <span class="highlight">Ritvik Shrigaddi</span></h1>
         <p class="typing-text">
-          I'm a Ritvik Shrigaddi <span class="typed-text"></span>
+          I'm a <span class="typed-text"></span><span class="cursor"></span>
         </p>
         <div class="social-links">
-          <a href="https://github.com/ritvik-shrigaddi"
-            ><i class="fab fa-github"></i
-          ></a>
-          <a href="https://www.linkedin.com/in/ritvikshrigaddi/"
-            ><i class="fab fa-linkedin"></i
-          ></a>
+          <a
+            href="https://github.com/ritvik-shrigaddi"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ritvikshrigaddi/"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
       <h2>About Me</h2>
       <div class="about-content">
@@ -89,36 +100,42 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
       <h2>My Projects</h2>
       <div class="project-grid">
         <div class="project-card">
-          <!-- <img src="https://via.placeholder.com/300x200" alt="Project 1" /> -->
           <h3>Spotify Clone</h3>
           <p>
-            I have created a clone of Spotify using HTML5, CSS3, and Bootstrap.
+            A modern clone of Spotify built with HTML5, CSS3, and Bootstrap,
+            featuring a responsive design and interactive UI elements.
           </p>
           <div class="project-links">
             <a
               href="https://github.com/ritvik-shrigaddi/Spotify-Clone"
               class="btn"
+              target="_blank"
               >Live Demo</a
             >
             <a
               href="https://github.com/ritvik-shrigaddi/Spotify-Clone"
               class="btn"
+              target="_blank"
               >GitHub</a
             >
           </div>
         </div>
         <div class="project-card">
-          <!-- <img src="https://via.placeholder.com/300x200" alt="Project 2" /> -->
           <h3>Portfolio</h3>
-          <p>I have created a Portfolio using HTML5, CSS3, and Bootstrap.</p>
+          <p>
+            A modern, responsive portfolio website showcasing my work and
+            skills, built with HTML5, CSS3, and JavaScript.
+          </p>
           <div class="project-links">
-            <a href="#" class="btn">Live Demo</a>
-            <a href="https://github.com/ritvik-shrigaddi/Portfolio" class="btn"
+            <a href="#" class="btn" target="_blank">Live Demo</a>
+            <a
+              href="https://github.com/ritvik-shrigaddi/Portfolio"
+              class="btn"
+              target="_blank"
               >GitHub</a
             >
           </div>
@@ -126,21 +143,23 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
       <h2>Contact Me</h2>
       <div class="contact-content">
         <form id="contact-form">
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="Email" required />
-          <textarea placeholder="Message" required></textarea>
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <textarea name="message" placeholder="Message" required></textarea>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
     </section>
 
     <footer>
-      <p>&copy; 2025 Made with ❤️ by Ritvik Shrigaddi. All rights reserved.</p>
+      <p>
+        &copy; 2024 Made with <i class="fas fa-heart"></i> by Ritvik Shrigaddi.
+        All rights reserved.
+      </p>
     </footer>
 
     <script src="script.js"></script>

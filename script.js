@@ -3,8 +3,8 @@ const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
 const textArray = ["Web Developer", "UI/UX Designer", "Freelancer"];
-const typingDelay = 200;
-const erasingDelay = 100;
+const typingDelay = 100;
+const erasingDelay = 50;
 const newTextDelay = 2000;
 let textArrayIndex = 0;
 let charIndex = 0;
@@ -45,7 +45,6 @@ const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-links li");
 
 hamburger.addEventListener("click", () => {
-    // Toggle Nav
     hamburger.classList.toggle("active");
     navLinks.classList.toggle("active");
 });
@@ -58,17 +57,23 @@ links.forEach(link => {
     });
 });
 
-// Smooth Scrolling
+// Smooth Scrolling with offset
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        const navHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
             behavior: 'smooth'
         });
     });
 });
 
-// Form Submission
+// Form Submission with validation
 const contactForm = document.getElementById('contact-form');
 
 contactForm.addEventListener('submit', function(e) {
@@ -81,6 +86,19 @@ contactForm.addEventListener('submit', function(e) {
         formObject[key] = value;
     });
     
+    // Basic validation
+    if (!formObject.name || !formObject.email || !formObject.message) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formObject.email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
     // Here you would typically send the form data to a server
     console.log('Form submitted:', formObject);
     
@@ -89,7 +107,27 @@ contactForm.addEventListener('submit', function(e) {
     this.reset();
 });
 
-// Scroll Animation
+// Scroll Animation with Intersection Observer
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+});
+
+// Active Navigation Link
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -99,7 +137,7 @@ window.addEventListener('scroll', () => {
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 60) {
+        if (pageYOffset >= sectionTop - 100) {
             current = section.getAttribute('id');
         }
     });
