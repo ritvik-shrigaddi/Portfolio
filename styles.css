@@ -65,28 +65,88 @@ body {
     justify-content: center;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .hero-content {
     text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-text {
+    margin-bottom: 2rem;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
+    animation: fadeInDown 1s ease;
 }
 
-.highlight {
+.hero-description {
+    font-size: 1.2rem;
+    color: #888;
+    margin: 1.5rem 0;
+    animation: fadeInUp 1s ease 0.5s both;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+    animation: fadeInUp 1s ease 0.7s both;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.cta-button.primary {
+    background-color: #00ff88;
+    color: #121212;
+}
+
+.cta-button.secondary {
+    background-color: transparent;
     color: #00ff88;
+    border: 2px solid #00ff88;
 }
 
-.typing-text {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+}
+
+.cta-button.primary:hover {
+    background-color: #00cc6a;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(0, 255, 136, 0.1);
 }
 
 .social-links {
     margin-top: 2rem;
+    animation: fadeInUp 1s ease 0.9s both;
 }
 
 .social-links a {
@@ -99,6 +159,85 @@ body {
 .social-links a:hover {
     color: #00ff88;
     transform: translateY(-3px);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #888;
+    animation: fadeInUp 1s ease 1.1s both;
+    cursor: pointer;
+}
+
+.scroll-indicator span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.scroll-indicator i {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments for hero section */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* About Section */
@@ -460,8 +599,18 @@ footer {
         font-size: 2rem;
     }
     
-    .typing-text {
-        font-size: 1.2rem;
+    .hero-description {
+        font-size: 1.1rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        text-align: center;
     }
 
     .project-grid {
