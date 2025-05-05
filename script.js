@@ -78,17 +78,102 @@ const contactForm = document.getElementById('contact-form');
 const customAlert = document.getElementById('customAlert');
 const alertMessage = document.getElementById('alertMessage');
 
-function showAlert(message) {
+function showAlert(message, type = 'success') {
     alertMessage.textContent = message;
     customAlert.style.display = 'flex';
+    // Trigger reflow
+    customAlert.offsetHeight;
+    customAlert.classList.add('show');
+    
+    // Update icon based on type
+    const icon = customAlert.querySelector('i');
+    if (type === 'error') {
+        icon.className = 'fas fa-exclamation-circle';
+        icon.style.color = '#ff4444';
+    } else {
+        icon.className = 'fas fa-check-circle';
+        icon.style.color = '#00ff88';
+    }
 }
 
 function closeAlert() {
-    customAlert.style.display = 'none';
+    customAlert.classList.remove('show');
+    setTimeout(() => {
+        customAlert.style.display = 'none';
+    }, 300);
 }
+
+// Form validation
+function validateField(field) {
+    const value = field.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+
+    switch(field.name) {
+        case 'name':
+            if (value.length < 2) {
+                isValid = false;
+                errorMessage = 'Name must be at least 2 characters long';
+            }
+            break;
+        case 'email':
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+            break;
+        case 'message':
+            if (value.length < 10) {
+                isValid = false;
+                errorMessage = 'Message must be at least 10 characters long';
+            }
+            break;
+    }
+
+    if (!isValid) {
+        field.classList.add('form-error');
+        let errorDiv = field.nextElementSibling;
+        if (!errorDiv || !errorDiv.classList.contains('form-error-message')) {
+            errorDiv = document.createElement('div');
+            errorDiv.className = 'form-error-message';
+            field.parentNode.insertBefore(errorDiv, field.nextSibling);
+        }
+        errorDiv.textContent = errorMessage;
+        errorDiv.style.display = 'block';
+    } else {
+        field.classList.remove('form-error');
+        const errorDiv = field.nextElementSibling;
+        if (errorDiv && errorDiv.classList.contains('form-error-message')) {
+            errorDiv.style.display = 'none';
+        }
+    }
+
+    return isValid;
+}
+
+// Add input event listeners for real-time validation
+contactForm.querySelectorAll('input, textarea').forEach(field => {
+    field.addEventListener('input', () => {
+        validateField(field);
+    });
+});
 
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    // Validate all fields
+    let isValid = true;
+    this.querySelectorAll('input, textarea').forEach(field => {
+        if (!validateField(field)) {
+            isValid = false;
+        }
+    });
+
+    if (!isValid) {
+        showAlert('Please fix the errors in the form', 'error');
+        return;
+    }
     
     // Get form data
     const formData = new FormData(this);
@@ -97,25 +182,20 @@ contactForm.addEventListener('submit', function(e) {
         formObject[key] = value;
     });
     
-    // Basic validation
-    if (!formObject.name || !formObject.email || !formObject.message) {
-        showAlert('Please fill in all fields');
-        return;
-    }
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitButton.disabled = true;
     
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formObject.email)) {
-        showAlert('Please enter a valid email address');
-        return;
-    }
-    
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', formObject);
-    
-    // Show success message
-    showAlert('Thank you for your message! I will get back to you soon.');
-    this.reset();
+    // Simulate form submission
+    setTimeout(() => {
+        console.log('Form submitted:', formObject);
+        showAlert('Thank you for your message! I will get back to you soon.');
+        this.reset();
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+    }, 1500);
 });
 
 // Scroll Animation with Intersection Observer
