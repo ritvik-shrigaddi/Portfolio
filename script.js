@@ -75,6 +75,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Form Submission with validation
 const contactForm = document.getElementById('contact-form');
+const customAlert = document.getElementById('customAlert');
+const alertMessage = document.getElementById('alertMessage');
+
+function showAlert(message) {
+    alertMessage.textContent = message;
+    customAlert.style.display = 'flex';
+}
+
+function closeAlert() {
+    customAlert.style.display = 'none';
+}
 
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -88,14 +99,14 @@ contactForm.addEventListener('submit', function(e) {
     
     // Basic validation
     if (!formObject.name || !formObject.email || !formObject.message) {
-        alert('Please fill in all fields');
+        showAlert('Please fill in all fields');
         return;
     }
     
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formObject.email)) {
-        alert('Please enter a valid email address');
+        showAlert('Please enter a valid email address');
         return;
     }
     
@@ -103,7 +114,7 @@ contactForm.addEventListener('submit', function(e) {
     console.log('Form submitted:', formObject);
     
     // Show success message
-    alert('Thank you for your message! I will get back to you soon.');
+    showAlert('Thank you for your message! I will get back to you soon.');
     this.reset();
 });
 
