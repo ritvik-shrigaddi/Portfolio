@@ -322,4 +322,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-}); 
+});
+
+// Process Section Animation
+const processSection = document.querySelector('.process-steps');
+const processSteps = document.querySelectorAll('.step');
+
+const processObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            processSection.classList.add('visible');
+            processSteps.forEach(step => {
+                step.classList.add('visible');
+            });
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+if (processSection) {
+    processObserver.observe(processSection);
+} 
