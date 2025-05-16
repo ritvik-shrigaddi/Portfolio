@@ -174,6 +174,13 @@ contactForm.addEventListener('submit', function(e) {
         showAlert('Please fix the errors in the form', 'error');
         return;
     }
+
+    // Validate reCAPTCHA
+    const recaptchaResponse = grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+        showAlert('Please complete the reCAPTCHA verification', 'error');
+        return;
+    }
     
     // Get form data
     const formData = new FormData(this);
@@ -193,6 +200,7 @@ contactForm.addEventListener('submit', function(e) {
         console.log('Form submitted:', formObject);
         showAlert('Thank you for your message! I will get back to you soon.');
         this.reset();
+        grecaptcha.reset(); // Reset reCAPTCHA after successful submission
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
     }, 1500);

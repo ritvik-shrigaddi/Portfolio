@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
     <nav class="navbar">
@@ -302,6 +303,10 @@
           <input type="text" name="name" placeholder="Name" required />
           <input type="email" name="email" placeholder="Email" required />
           <textarea name="message" placeholder="Message" required></textarea>
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+          ></div>
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
